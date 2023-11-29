@@ -96,13 +96,14 @@ import net.mcreator.sonicadventures.ChaoColor;
 import net.mcreator.sonicadventures.procedures.ChaoRCCostumeProcedure;
 import net.mcreator.sonicadventures.procedures.TestingCostumeProcedure;
 
-//
+
+//
 
 
 public class ChaoEntity extends TamableAnimal {
 	
 	//Code For Data Sync Part 1 Changing as going
-	//private static final EntityDataAccessor<Integer> DATA_SWELL_DIR = SynchedEntityData.defineId(Creeper.class, EntityDataSerializers.INT);
+	//private static final EntityDataAccessor<ChaoType> DATA_CHAO_TYPE = SynchedEntityData.defineId(ChaoEntity.class, EntityDataSerializers.ChaoType); //Does Not Like
 	//private static final EntityDataAccessor<Boolean> DATA_IS_POWERED = SynchedEntityData.defineId(Creeper.class, EntityDataSerializers.BOOLEAN);
 	//private static final EntityDataAccessor<Boolean> DATA_IS_IGNITED = SynchedEntityData.defineId(Creeper.class, EntityDataSerializers.BOOLEAN);
 	
