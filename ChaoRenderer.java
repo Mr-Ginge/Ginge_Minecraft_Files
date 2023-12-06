@@ -45,7 +45,7 @@ else
 	@Override
 	public ResourceLocation getTextureLocation(ChaoEntity entity) 
 	{
-		if (entity.getPersistentData().getInt("DATA_CHAO_ALIGNMENT") < -1)
+		if (entity.getPersistentData().getInt("CHAOALIGNMENT") < -1)
 		{
 			return CHAO_DARK_LOCATION;
 		}
