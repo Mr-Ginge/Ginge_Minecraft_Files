@@ -22,8 +22,9 @@ public class ChaoRenderer extends MobRenderer<ChaoEntity, Modelchao_new<ChaoEnti
 	{
 		super(context, new Modelchao_new(context.bakeLayer(Modelchao_new.LAYER_LOCATION)), 0.5f);
 	}
-	
-	@Override
+
+	
+	/*@Override
 	public ResourceLocation getTextureLocation(ChaoEntity entity) 
 	{
 		if (entity.getChaoType() == ChaoType.DARKCHAO)
@@ -34,20 +35,21 @@ public class ChaoRenderer extends MobRenderer<ChaoEntity, Modelchao_new<ChaoEnti
 		{
 			return CHAO_HERO_LOCATION;
 		}
-		else
+		
+else
 		{
 			return CHAO_NEUTRAL_LOCATION;
 		}
 	}
-	/*
+	*/
 	@Override
 	public ResourceLocation getTextureLocation(ChaoEntity entity) 
 	{
-		if (entity.getPersistentData().getDouble("ALIGNMENT") == 2)
+		if (entity.getPersistentData().getInt("DATA_CHAO_ALIGNMENT") < -1)
 		{
 			return CHAO_DARK_LOCATION;
 		}
-		else if (entity.getPersistentData().getDouble("ALIGNMENT") == 1)
+		else if (entity.getPersistentData().getInt("CHAOALIGNMENT") > 1)
 		{
 			return CHAO_HERO_LOCATION;
 		}
@@ -56,5 +58,5 @@ public class ChaoRenderer extends MobRenderer<ChaoEntity, Modelchao_new<ChaoEnti
 			return CHAO_NEUTRAL_LOCATION;
 		}
 	}
-	*/
+	
 }
