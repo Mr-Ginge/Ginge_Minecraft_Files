@@ -95,19 +95,14 @@ import net.mcreator.sonicadventures.ChaoSubType;
 import net.mcreator.sonicadventures.ChaoColor;
 import net.mcreator.sonicadventures.procedures.ChaoRCCostumeProcedure;
 import net.mcreator.sonicadventures.procedures.TestingCostumeProcedure;
+import net.minecraft.network.chat.Component;
+import java.util.UUID;
 
 
 //
 
 
 public class ChaoEntity extends TamableAnimal {
-	
-	//Code For Data Sync Part 1 Changing as going
-	//private static final EntityDataAccessor<ChaoType> DATA_CHAO_TYPE = SynchedEntityData.defineId(ChaoEntity.class, EntityDataSerializers.ChaoType); //Does Not Like
-	//private static final EntityDataAccessor<Boolean> DATA_IS_POWERED = SynchedEntityData.defineId(Creeper.class, EntityDataSerializers.BOOLEAN);
-	//private static final EntityDataAccessor<Boolean> DATA_IS_IGNITED = SynchedEntityData.defineId(Creeper.class, EntityDataSerializers.BOOLEAN);
-	
-	
 	
 	//MCREATOR SKELETON CODE
 	public ChaoEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -229,8 +224,8 @@ public class ChaoEntity extends TamableAnimal {
 		Entity entity = this;
 		Level world = this.level();
 
-		//ChaoRCCostumeProcedure.execute(entity, sourceentity);
-		TestingCostumeProcedure.execute(world, entity, sourceentity);
+		ChaoRCCostumeProcedure.execute(entity, sourceentity);
+		//TestingCostumeProcedure.execute(world, entity, sourceentity);
 		
 		
 		return retval;
@@ -264,42 +259,73 @@ public class ChaoEntity extends TamableAnimal {
 	}
 	
 //My Custom Code
+	/*FIXME*/
+	//Code For Data Sync Part 1 Changing as going
+	private static final EntityDataAccessor<Integer> DATA_CHAO_ALIGNMENT = SynchedEntityData.defineId(ChaoEntity.class, EntityDataSerializers.INT);
+	
+	@Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_CHAO_ALIGNMENT, tag.getInt("CHAOALIGNMENT"));
+    }
+	@Override
+	public void addAdditionalSaveData(CompoundTag tag) {
+      super.addAdditionalSaveData(tag);
+      tag.putInt("CHAOALIGNMENT", 0);
+	}
+	
+    @Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_CHAO_ALIGNMENT, 0);
+	}
+	/*FIXME*/
 	//public static void ChaoStats() {
 		//CUSTOM STATS.
-		
+	//CHAO APPEARANCE
 	ChaoType chaoType;
-		double SWIMLVL = 1;
-		double FLYLVL = 1;
-		double RUNLVL = 1;
-		double POWERLVL = 1;
-		double STAMINALVL = 1;
-		double ALIGNMENT = 0;
-		double COSTUME = 0;
-		
-	//}
+	ChaoColor chaoColor;
+	ChaoSubType chaoSubType;
+	private static int ALIGNMENT;
+	private static int COSTUME;
+	private static int COLOR;
 	
+	
+	
+	//CHAO LEVELS
+	public static final int SWIMLVL = 1;
+	public static final int FLYLVL = 1;
+	public static final int RUNLVL = 1;
+	public static final int POWERLVL = 1;
+	public static final int STAMINALVL = 1;
+	//CHAO EXPERIENCE
+	public static final int SWIMEXP = 0;
+	public static final int FLYEXP = 0;
+	public static final int RUNEXP = 0;
+	public static final int POWEREXP = 0;
+	public static final int STAMINAEXP = 0;
+	
+	//CHAOTYPE Getter And Setter
 	public ChaoType getChaoType() {
 		return this.chaoType;
 	}
-	
 	public void setChaoType(ChaoType chaotype) {
 		this.chaoType = chaotype;
 	}
-	
-	public ChaoSubType getChaoSubType() {
-		return ChaoSubType.BASECHAO;
-	}
-	
+	//CHAOCOLOR Getter And Setter
 	public ChaoColor getChaoColor() {
-		return ChaoColor.REGULARCHAO;
+		return this.chaoColor;
 	}
-    // Data Sync Part 2 
-	/*protected void defineSynchedData() {
-      super.defineSynchedData();
-      this.entityData.define(DATA_INTERESTED_ID, false);
-      this.entityData.define(DATA_COLLAR_COLOR, DyeColor.RED.getId());
-      this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
-      }*/
-
+	public void setChaoColor(ChaoColor chaocolor) {
+		this.chaoColor = chaocolor;
+	}
+	
+	//CHAOSUBTYPE Getter And Setter
+    public ChaoSubType getChaoSubType() {
+		return this.chaoSubType;
+	}
+	public void setChaoSubType(ChaoSubType chaosubtype) {
+		this.chaoSubType = chaosubtype;
+	}
 	
 }
